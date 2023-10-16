@@ -5,6 +5,10 @@
 #include <string.h>
 #include <unistd.h>
 
+#ifndef GIT_COMMIT
+#define GIT_COMMIT "none"
+#endif
+
 char *buf;
 char *delta__;
 char *free__;
@@ -41,17 +45,17 @@ char *format_num(float num_, int max) {
   char *ret_ = calloc(max, sizeof(char));
   switch (div_c) {
   case KB:
-    sprintf(ret_, "%.1fKB", ret);
+    sprintf(ret_, "%.1fKi", ret);
     return ret_;
     break;
 
   case MB:
-    sprintf(ret_, "%.1fMB", ret);
+    sprintf(ret_, "%.1fMi", ret);
     return ret_;
     break;
 
   case GB:
-    sprintf(ret_, "%.1fGB", ret);
+    sprintf(ret_, "%.1fGi", ret);
     return ret_;
     break;
 
@@ -65,7 +69,8 @@ char *format_num(float num_, int max) {
 
 int main(int argc, char *argv[]) {
   signal(SIGINT, sig_int);
-  // printf("sleep(%d);\n", argc == 2 ? atoi(argv[1]) : 1);
+  printf("sleep(%d);\n", argc == 2 ? atoi(argv[1]) : 1);
+  fprintf(stderr, "build_commit: %s\n", GIT_COMMIT);
   while (1) {
     mem_fp = fopen("/proc/meminfo", "r");
     if (!mem_fp) {
