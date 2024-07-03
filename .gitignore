@@ -1,2 +1,4 @@
 build/
 mem_watch
+compile_commands.json
+.cache

@@ -8,6 +8,5 @@ Sleep 1 sec or whatever is the first param.
 ## Build default
 ```make``` 
 
-## Buil clean 
-
+## Build clean 
 ```make clean all```
